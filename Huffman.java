@@ -1,3 +1,4 @@
+import java.util.Scanner;
 import java.util.PriorityQueue;
 
 public class HuffmanCoding {
@@ -32,14 +33,27 @@ public class HuffmanCoding {
 
     public static void main(String[] args) {
 
-        char[] chars = {'A', 'B', 'C', 'D', 'E'};
+        Scanner sc = new Scanner(System.in);
 
-        int[] freq = {12, 7, 20, 15, 5};
+        System.out.print("Enter number of characters: ");
+        int n = sc.nextInt();
+
+        char[] chars = new char[n];
+        int[] freq = new int[n];
+
+        for (int i = 0; i < n; i++) {
+
+            System.out.print("Enter character: ");
+            chars[i] = sc.next().charAt(0);
+
+            System.out.print("Enter frequency: ");
+            freq[i] = sc.nextInt();
+        }
 
         PriorityQueue<Node> pq =
             new PriorityQueue<>((a, b) -> a.freq - b.freq);
 
-        for (int i = 0; i < chars.length; i++) {
+        for (int i = 0; i < n; i++) {
 
             pq.add(new Node(chars[i], freq[i]));
         }
@@ -60,5 +74,7 @@ public class HuffmanCoding {
         System.out.println("Huffman Codes:");
 
         printCodes(pq.poll(), "");
+
+        sc.close();
     }
 }
