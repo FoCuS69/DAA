@@ -1,6 +1,8 @@
+import java.util.Scanner;
+
 public class NQueens {
 
-    static final int N = 8;
+    static int N;
 
     static boolean isSafe(int[][] board, int row, int col) {
 
@@ -53,12 +55,20 @@ public class NQueens {
 
     public static void main(String[] args) {
 
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter board size: ");
+        N = sc.nextInt();
+
+        if (N <= 0) {
+            System.out.println("Enter a positive number.");
+            sc.close();
+            return;
+        }
+
         int[][] board = new int[N][N];
 
-        // Place first queen
-        board[0][0] = 1;
-
-        if (solve(board, 1)) {
+        if (solve(board, 0)) {
 
             System.out.println("N-Queens Solution:");
 
@@ -76,5 +86,7 @@ public class NQueens {
 
             System.out.println("No solution exists.");
         }
+
+        sc.close();
     }
 }
